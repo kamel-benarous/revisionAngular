@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col">
+      <h3>my to do list</h3>
+      <ul *ngIf="todos.length > 0 ; else emptyTodo">
+        <li 
+          *ngFor="let todo of todos; let index = index" 
+        >
+          {{ todo.label }} | {{ todo.isDone?'is done':'' }} <button (click)="markAsDone(index)">x</button>
+        </li>
+      </ul>
+      <ng-template #emptyTodo> my todo list is empty </ng-template>
+    </div>
+    <div class="col">
+      <h3>to add a new todo</h3>
+      <label for="newTodo">
+        add a task
+        <input 
+          type="text" 
+          class="input-field" 
+          name="newTodo" 
+          [(ngModel)]="newTodo"
+          (keyup.enter)="addNewTodo()"
+        >
+      </label>
+    </div>
+  </div>
